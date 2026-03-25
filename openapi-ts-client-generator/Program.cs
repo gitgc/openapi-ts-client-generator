@@ -1,6 +1,8 @@
 ﻿
 using System.CommandLine;
 
+namespace OpenApiTsClientGenerator;
+
 internal static class Program
 {
     private static readonly GeneratorCli G_CLI = new();

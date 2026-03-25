@@ -1,5 +1,7 @@
 using System.CommandLine;
 
+namespace OpenApiTsClientGenerator;
+
 internal sealed class GeneratorCli
 {
     private readonly Option<FileInfo> _fileArgument = new("--file", "-f")
@@ -103,7 +105,7 @@ internal sealed class GeneratorCli
             if (file is not null)
             {
                 Console.WriteLine($"Processing file: {file.FullName}");
-                string code = converter.ConvertFromUrl(file.FullName);
+                string code = converter.ConvertFromFile(file.FullName);
                 File.WriteAllText(outputFile.FullName, code);
                 Console.WriteLine($"Generated code has been written to {outputFile.FullName}");
             }
