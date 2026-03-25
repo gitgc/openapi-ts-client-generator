@@ -1,6 +1,4 @@
 ﻿
-using System.CommandLine;
-
 namespace OpenApiTsClientGenerator;
 
 internal static class Program
@@ -9,9 +7,6 @@ internal static class Program
 
     public static int Main(string[] args)
     {
-        RootCommand rootCommand = G_CLI.Start();
-        ParseResult parseResult = rootCommand.Parse(args);
-
-        return parseResult.Invoke();
+        return G_CLI.Parse(args).Invoke();
     }
 }

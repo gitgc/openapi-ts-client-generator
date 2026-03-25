@@ -10,8 +10,8 @@ A .NET CLI tool that generates TypeScript code from OpenAPI schemas. It supports
 
 ## Requirements
 - .NET 10.0 SDK or later
-- Compatible with Windows, Linux, and macOS.
 - `dotnet` CLI tool installed and available in the system PATH.
+- Docker (for running tests that require a containerized environment)
 
 ## Usage
 1. **Build the Project**: Navigate to the project directory and run:

@@ -2,6 +2,9 @@ using System.CommandLine;
 
 namespace OpenApiTsClientGenerator;
 
+/// <summary>
+/// A class responsible for defining the command-line interface (CLI) for the OpenAPI TypeScript client generator, including command definitions, options, and validation logic.
+/// </summary>
 internal sealed class GeneratorCli
 {
     private readonly Option<FileInfo> _fileArgument = new("--file", "-f")
@@ -23,20 +26,26 @@ internal sealed class GeneratorCli
         DefaultValueFactory = result => new FileInfo("output.ts")
     };
 
+    private readonly RootCommand _rootCommand = new("OpenAPI Code Generator");
     private readonly Command _processCommand = new("process", "Process a file");
 
+    /// <summary>
+    /// Initializes a new instance of the GeneratorCli class, configuring the command-line options and validators.
+    /// </summary>
     public GeneratorCli()
     {
         ConfigureValidators();
         ConfigureCommands();
     }
 
-    internal RootCommand Start()
+    /// <summary>
+    /// Parses the command-line arguments and returns the resulting ParseResult, which can be invoked to execute the corresponding command action.
+    /// </summary>
+    /// <param name="args">The command-line arguments to parse.</param>
+    /// <returns>The ParseResult representing the parsed command-line arguments.</returns>
+    internal ParseResult Parse(string[] args)
     {
-        RootCommand rootCommand = new("OpenAPI Code Generator");
-        rootCommand.Subcommands.Add(_processCommand);
-
-        return rootCommand;
+        return _rootCommand.Parse(args);
     }
 
     private void ConfigureValidators()
@@ -117,5 +126,7 @@ internal sealed class GeneratorCli
                 Console.WriteLine($"Generated code has been written to {outputFile.FullName}");
             }
         });
+
+        _rootCommand.Subcommands.Add(_processCommand);
     }
 }
