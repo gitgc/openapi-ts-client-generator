@@ -5,6 +5,9 @@ using DotNet.Testcontainers.Containers;
 
 namespace OpenApiTsClientGenerator.Tests;
 
+/// <summary>
+/// Tests for the GeneratorCli class, which is responsible for defining the command-line interface (CLI) for the OpenAPI TypeScript client generator, including command definitions, options, and validation logic.
+/// </summary>
 internal sealed class GeneratorCliTests
 {
     private GeneratorCli _cli = null!;
