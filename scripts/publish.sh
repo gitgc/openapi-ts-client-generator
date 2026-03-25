@@ -10,7 +10,7 @@ then
 fi
 
 # Navigate to the project directory
-pushd "$(dirname "$0")/.."
+pushd "$(dirname "$0")/../openapi-ts-client-generator"
 
 # Build the project and publish a self-contained executable for all platforms
 dotnet publish -c Release -r win-x64 --property:PublishDir=../publish/win-x64
