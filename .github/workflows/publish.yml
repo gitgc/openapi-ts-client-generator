@@ -21,9 +21,21 @@ jobs:
       - name: Publish
         run: bash scripts/publish.sh
 
+      - name: Rename binaries
+        run: |
+          for rid in win-x64 win-arm64; do
+            mv publish/${rid}/openapi-ts-client-generator.exe publish/${rid}/openapi-ts-client-generator-${rid}.exe
+          done
+          for rid in linux-x64 linux-arm64 osx-x64 osx-arm64; do
+            mv publish/${rid}/openapi-ts-client-generator publish/${rid}/openapi-ts-client-generator-${rid}
+          done
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.sha }}
           name: ${{ github.sha }}
-          files: publish/**/*
+          files: |
+            publish/win-*/openapi-ts-client-generator-*.exe
+            publish/linux-*/openapi-ts-client-generator-*
+            publish/osx-*/openapi-ts-client-generator-*
