@@ -4,7 +4,7 @@
 /// </summary>
 internal sealed class TypeScriptConverterTests
 {
-    private TypeScriptConverter? _converter;
+    private TypeScriptConverter _converter;
 
     [SetUp]
     public void Setup()
